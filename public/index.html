@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="https://img.freepik.com/premium-vector/round-download-button-icon-white-background_34480-1464.jpg" />
+  <title>YouTube Downloader</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-700 via-blue-600 to-indigo-700 flex items-center justify-center p-6">
+  <main class="bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl max-w-xl w-full p-10 flex flex-col gap-8">
+    <h1 class="text-4xl font-extrabold text-center text-indigo-900 drop-shadow-lg">
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">
+        YouTube Downloader
+      </span>
+    </h1>
+
+    <form id="downloadForm" class="flex flex-col gap-6">
+      <label for="url" class="relative block">
+        <svg xmlns="http://www.w3.org/2000/svg" 
+             class="absolute left-3 top-1/2 transform -translate-y-1/2 h-6 w-6 text-purple-500" 
+             fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" 
+                d="M15 10l4.553-2.276A2 2 0 0122 9.618v4.764a2 2 0 01-2.447 1.894L15 14m-6 0l-4.553 2.276A2 2 0 012 14.382v-4.764a2 2 0 012.447-1.894L9 10m0 0v4m0-4L5.447 7.724" />
+        </svg>
+        <input type="url" id="url" name="url" required placeholder="Paste YouTube link here..." 
+               class="w-full pl-12 pr-4 py-3 rounded-xl border border-purple-400 focus:border-purple-700 focus:ring-2 focus:ring-purple-400 outline-none transition" />
+      </label>
+       <label for="file_name" class="relative block">
+        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-6 w-6 text-purple-500" viewBox="0 0 20 20">
+					<path fill="currentColor" d="M6.176,7.241V6.78c0-0.221-0.181-0.402-0.402-0.402c-0.221,0-0.403,0.181-0.403,0.402v0.461C4.79,7.416,4.365,7.955,4.365,8.591c0,0.636,0.424,1.175,1.006,1.35v3.278c0,0.222,0.182,0.402,0.403,0.402c0.222,0,0.402-0.181,0.402-0.402V9.941c0.582-0.175,1.006-0.714,1.006-1.35C7.183,7.955,6.758,7.416,6.176,7.241 M5.774,9.195c-0.332,0-0.604-0.272-0.604-0.604c0-0.332,0.272-0.604,0.604-0.604c0.332,0,0.604,0.272,0.604,0.604C6.377,8.923,6.105,9.195,5.774,9.195 M10.402,10.058V6.78c0-0.221-0.181-0.402-0.402-0.402c-0.222,0-0.402,0.181-0.402,0.402v3.278c-0.582,0.175-1.006,0.714-1.006,1.35c0,0.637,0.424,1.175,1.006,1.351v0.461c0,0.222,0.181,0.402,0.402,0.402c0.221,0,0.402-0.181,0.402-0.402v-0.461c0.582-0.176,1.006-0.714,1.006-1.351C11.408,10.772,10.984,10.233,10.402,10.058M10,12.013c-0.333,0-0.604-0.272-0.604-0.604S9.667,10.805,10,10.805c0.332,0,0.604,0.271,0.604,0.604S10.332,12.013,10,12.013M14.629,8.448V6.78c0-0.221-0.182-0.402-0.403-0.402c-0.221,0-0.402,0.181-0.402,0.402v1.668c-0.581,0.175-1.006,0.714-1.006,1.35c0,0.636,0.425,1.176,1.006,1.351v2.07c0,0.222,0.182,0.402,0.402,0.402c0.222,0,0.403-0.181,0.403-0.402v-2.07c0.581-0.175,1.006-0.715,1.006-1.351C15.635,9.163,15.21,8.624,14.629,8.448 M14.226,10.402c-0.331,0-0.604-0.272-0.604-0.604c0-0.332,0.272-0.604,0.604-0.604c0.332,0,0.604,0.272,0.604,0.604C14.83,10.13,14.558,10.402,14.226,10.402 M17.647,3.962H2.353c-0.221,0-0.402,0.181-0.402,0.402v11.27c0,0.222,0.181,0.402,0.402,0.402h15.295c0.222,0,0.402-0.181,0.402-0.402V4.365C18.05,4.144,17.869,3.962,17.647,3.962 M17.245,15.232H2.755V4.768h14.49V15.232z"></path>
+				</svg>
+        <input type="text" id="file_name" required placeholder="Save as..." 
+               class="w-full pl-12 pr-4 py-3 rounded-xl border border-purple-400 focus:border-purple-700 focus:ring-2 focus:ring-purple-400 outline-none transition" />
+      </label>
+
+      <div class="flex justify-center gap-8 text-indigo-900 font-semibold select-none">
+        <label class="flex items-center cursor-pointer space-x-2">
+          <input type="radio" name="type" value="audio" checked class="peer hidden" />
+          <span class="w-6 h-6 rounded-full border-2 border-purple-600 flex items-center justify-center peer-checked:bg-purple-600 peer-checked:border-transparent transition"></span>
+          <span>MP3 (Audio)</span>
+        </label>
+        <label class="flex items-center cursor-pointer space-x-2">
+          <input type="radio" name="type" value="video" class="peer hidden" />
+          <span class="w-6 h-6 rounded-full border-2 border-purple-600 flex items-center justify-center peer-checked:bg-purple-600 peer-checked:border-transparent transition"></span>
+          <span>MP4 (Video)</span>
+        </label>
+      </div>
+
+      <button id="btnDownload" type="submit" 
+              class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-pink-500 hover:to-purple-600 text-white font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-3 transition-all duration-300">
+        <svg id="iconDownload" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" 
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
+        </svg>
+        Download
+      </button>
+
+      <div id="progressContainer" class="w-full bg-purple-200 rounded-full h-4 overflow-hidden hidden">
+        <div id="progressBar" class="bg-purple-600 h-4 w-0 transition-all duration-300"></div>
+      </div>
+
+      <p id="statusMsg" class="text-center text-purple-700 font-semibold h-6 min-h-[1.5rem]"></p>
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById('downloadForm');
+    const btn = document.getElementById('btnDownload');
+    const iconDownload = document.getElementById('iconDownload');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressBar = document.getElementById('progressBar');
+    const statusMsg = document.getElementById('statusMsg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const url = form.url.value.trim();
+      const type = form.type.value;
+
+      if (!url) return alert('Please, insert a URL.');
+
+      statusMsg.textContent = '';
+      progressBar.style.width = '0%';
+      progressContainer.classList.remove('hidden');
+      btn.disabled = true;
+
+      iconDownload.innerHTML = `
+        <circle class="animate-pulse" cx="12" cy="12" r="10" stroke="white" stroke-width="4" />
+      `;
+
+      try {
+        const response = await fetch('download', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url, type })
+        });
+
+        if (!response.ok) throw new Error('Error downloading.');
+
+        const contentLength = response.headers.get('Content-Length');
+        const total = contentLength ? parseInt(contentLength, 10) : null;
+
+        const reader = response.body.getReader();
+        let receivedLength = 0;
+        const chunks = [];
+
+        while(true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          chunks.push(value);
+          receivedLength += value.length;
+
+          if (total) {
+            const progress = (receivedLength / total) * 100;
+            progressBar.style.width = progress + '%';
+          } else {
+            progressBar.style.width = '100%';
+            progressBar.classList.add('animate-pulse');
+          }
+        }
+
+        const blob = new Blob(chunks);
+        const disposition = response.headers.get('Content-Disposition') || '';
+        const filename = `${document.querySelector('#file_name').value.trim()}.${type === 'audio' ? 'mp3' : 'mp4'}`;
+
+        const urlBlob = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = urlBlob;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(urlBlob);
+
+        statusMsg.textContent = 'Download completed successfully!';
+        statusMsg.classList.remove('text-purple-700', 'text-red-600');
+        statusMsg.classList.add('text-green-600');
+
+      } catch (err) {
+        console.error(err);
+        statusMsg.textContent = 'Error processing video.';
+        statusMsg.classList.remove('text-green-600');
+        statusMsg.classList.add('text-red-600');
+      } finally {
+        btn.disabled = false;
+        iconDownload.innerHTML = `
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
+        `;
+        progressContainer.classList.add('hidden');
+        progressBar.classList.remove('animate-pulse');
+        progressBar.style.width = '0%';
+      }
+    });
+  </script>
+</body>
+</html>
